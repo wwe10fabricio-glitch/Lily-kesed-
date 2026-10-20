@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7c3aed">
+<meta name="description" content="Lily Kesed — converse, compartilhe momentos e organize sessões de filmes com amigos.">
+<title>Lily Kesed</title>
+<style>
+:root{--bg:#fff7fb;--ink:#26143b;--muted:#806d91;--purple:#7c3aed;--pink:#ec4899;--cyan:#22d3ee;--card:#fff;--line:#f0e4f7;--me:#7c3aed}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(135deg,#fff7fb,#f0f9ff);color:var(--ink);min-height:100dvh}
+button,input{font:inherit}button{cursor:pointer;border:0}.app{max-width:1000px;margin:auto;min-height:100dvh;display:flex;flex-direction:column;background:rgba(255,255,255,.7)}
+header{padding:17px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(110deg,#7c3aed,#ec4899);color:white;box-shadow:0 5px 20px #7c3aed25}
+.logo{width:46px;height:46px;border-radius:16px;background:#ffffff28;display:grid;place-items:center;font-size:25px;border:1px solid #ffffff60}
+.brand{flex:1}.brand h1{font-size:20px;margin:0;font-weight:850;letter-spacing:.2px}.brand p{margin:2px 0 0;font-size:12px;opacity:.9}.online{font-size:12px;background:#ffffff25;padding:8px 10px;border-radius:99px}
+.tabs{display:flex;gap:7px;padding:12px;overflow:auto;background:#fff;border-bottom:1px solid var(--line)}
+.tab{white-space:nowrap;padding:10px 13px;border-radius:14px;background:#f8efff;color:#654780;font-weight:700;font-size:13px}.tab.active{background:#7c3aed;color:white;box-shadow:0 4px 12px #7c3aed35}
+main{padding:16px;flex:1}.panel{display:none}.panel.active{display:block}.welcome{border-radius:22px;padding:18px;background:linear-gradient(120deg,#ede9fe,#fce7f3,#cffafe);margin-bottom:16px}.welcome h2{margin:0 0 5px;font-size:22px}.welcome p{margin:0;color:#5e4a73;font-size:14px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:15px 0 10px}.section-title h3{margin:0;font-size:16px}.small{font-size:12px;color:var(--muted)}
+.chatlist{display:grid;gap:9px}.chatitem{display:flex;align-items:center;gap:12px;padding:12px;background:#fff;border:1px solid var(--line);border-radius:18px;text-align:left;width:100%;color:inherit}.avatar{width:47px;height:47px;border-radius:17px;display:grid;place-items:center;font-size:22px;flex-shrink:0;background:linear-gradient(135deg,#ddd6fe,#fbcfe8)}.chattext{flex:1;min-width:0}.chattext strong{display:block;font-size:14px}.chattext span{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}.pill{font-size:10px;color:#fff;background:#ec4899;padding:5px 7px;border-radius:99px}
+.messages{height:min(42dvh,390px);overflow:auto;padding:12px;background:#fff;border:1px solid var(--line);border-radius:20px;display:flex;flex-direction:column;gap:10px}.msg{max-width:83%;padding:10px 12px;border-radius:17px;background:#f3e8ff;align-self:flex-start;overflow-wrap:anywhere}.msg.mine{align-self:flex-end;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff}.msg small{display:block;font-size:10px;opacity:.7;margin-top:4px}.msg img{max-width:100%;border-radius:12px;display:block}.composer{display:flex;gap:7px;margin-top:10px;align-items:center}.composer input{min-width:0;flex:1;padding:13px;border:1px solid #e9d5ff;border-radius:16px;background:white;outline:none}.round{width:43px;height:43px;border-radius:15px;background:#f3e8ff;color:#6d28d9;font-size:19px}.send{background:linear-gradient(135deg,#7c3aed,#ec4899);color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.feature{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;min-height:130px}.feature .big{font-size:30px}.feature h3{margin:8px 0 4px;font-size:15px}.feature p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.action{background:linear-gradient(120deg,#7c3aed,#ec4899);color:#fff;border-radius:14px;padding:11px 14px;font-weight:750;margin-top:12px}.action.secondary{background:#f3e8ff;color:#6d28d9}.room{border-radius:22px;background:#1f1234;color:#fff;padding:18px;min-height:225px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.room:before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:#a855f755;right:-55px;top:-70px}.room>*{position:relative}.movie-screen{background:linear-gradient(135deg,#312e81,#be185d);height:120px;border-radius:15px;display:grid;place-items:center;font-size:48px;margin:12px 0}
+.callbox{background:linear-gradient(135deg,#cffafe,#fce7f3);border-radius:22px;padding:20px;text-align:center}.callbox .callavatar{font-size:58px}.callbox h3{margin:6px 0}.callbuttons{display:flex;justify-content:center;gap:12px;margin-top:16px}.callbuttons button{border-radius:50%;width:55px;height:55px;font-size:22px;background:#fff}.callbuttons .hang{background:#ef4444;color:#fff}
+.note{padding:12px;background:#fffbeb;border:1px solid #fde68a;border-radius:14px;color:#854d0e;font-size:12px;line-height:1.5;margin-top:14px}
+footer{text-align:center;padding:12px;color:#a18cad;font-size:11px}
+.modal{display:none;position:fixed;inset:0;background:#190b2bb8;z-index:5;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-card{background:white;border-radius:24px;padding:20px;width:min(440px,100%)}.modal-card h3{margin-top:0}.modal-card input{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;margin:7px 0}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+@media(min-width:700px){.app{margin:20px auto;min-height:calc(100dvh - 40px);border-radius:28px;overflow:hidden;box-shadow:0 20px 70px #7c3aed1a}main{padding:22px}.chatlayout{display:grid;grid-template-columns:270px 1fr;gap:14px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">💜</div><div class="brand"><h1>Lily Kesed</h1><p>Conecte-se. Compartilhe. Divirta-se.</p></div><div class="online">● online</div></header>
+<nav class="tabs" aria-label="Navegação">
+<button class="tab active" data-tab="inicio">🏠 Início</button><button class="tab" data-tab="chat">💬 Chat</button><button class="tab" data-tab="chamadas">📞 Chamadas</button><button class="tab" data-tab="filmes">🎬 Filmes juntos</button><button class="tab" data-tab="midia">📸 Mídia</button>
+</nav>
+<main>
+<section class="panel active" id="inicio">
+<div class="welcome"><h2>Oi! 💖 Que bom ter você aqui.</h2><p>Converse com quem você gosta e crie momentos especiais, mesmo de longe.</p></div>
+<div class="section-title"><h3>✨ Seu espaço</h3><span class="small">Tudo em um só lugar</span></div>
+<div class="grid">
+<div class="feature"><div class="big">💬</div><h3>Mensagens</h3><p>Converse no privado ou reúna todo mundo em grupos.</p><button class="action" onclick="go('chat')">Abrir chat</button></div>
+<div class="feature"><div class="big">🎙️</div><h3>Áudios e chamadas</h3><p>Compartilhe mensagens de voz e inicie chamadas.</p><button class="action" onclick="go('chamadas')">Ver chamadas</button></div>
+<div class="feature"><div class="big">🎬</div><h3>Noite de cinema</h3><p>Prepare uma sala para assistir com seus amigos.</p><button class="action" onclick="go('filmes')">Criar sala</button></div>
+<div class="feature"><div class="big">🌈</div><h3>Emojis e GIFs</h3><p>Deixe cada conversa com a sua personalidade.</p><button class="action" onclick="go('chat')">Experimentar</button></div>
+</div>
+<div class="note">Esta é uma demonstração visual local. Para conectar usuários de verdade, salvar conversas entre aparelhos e ativar chamadas/salas sincronizadas, será preciso configurar um servidor e serviços de mídia.</div>
+</section>
+<section class="panel" id="chat">
+<div class="section-title"><h3>💬 Conversas</h3><button class="action" style="margin:0" onclick="newChat()">＋ Nova</button></div>
+<div class="chatlayout"><div class="chatlist" id="chatlist">
+<button class="chatitem" onclick="selectChat('Lily 💗')"><div class="avatar">🌷</div><div class="chattext"><strong>Lily 💗</strong><span>Oi! Vamos assistir algo hoje? 🍿</span></div><span class="pill">1</span></button>
+<button class="chatitem" onclick="selectChat('Amigos 🎉')"><div class="avatar">🧑‍🤝‍🧑</div><div class="chattext"><strong>Amigos 🎉</strong><span>Grupo de amigos</span></div></button>
+</div><div><div class="section-title" style="margin-top:0"><h3 id="chatname">Lily 💗</h3><span class="small">Conversa de demonstração</span></div>
+<div class="messages" id="messages"><div class="msg">Oii! 💕<small>Lily · agora</small></div><div class="msg mine">Oi, Lily! Como você está? 😊<small>Você · agora</small></div><div class="msg">Vamos assistir um filme com os amigos? 🍿<small>Lily · agora</small></div></div>
+<div class="composer"><button class="round" title="Emoji" onclick="addEmoji()">😊</button><button class="round" title="GIF" onclick="addGif()">GIF</button><button class="round" title="Enviar foto" onclick="document.getElementById('photo').click()">📷</button><button class="round" title="Gravar áudio" onclick="recordAudio()">🎙️</button><input id="message" placeholder="Escreva uma mensagem..." onkeydown="if(event.key==='Enter')sendMsg()"><button class="round send" onclick="sendMsg()">➤</button><input id="photo" type="file" accept="image/*" hidden onchange="sendPhoto(event)"></div><div id="audioStatus" class="small" style="margin-top:7px"></div>
+</div></div>
+</section>
+<section class="panel" id="chamadas">
+<div class="welcome"><h2>📞 Fique pertinho</h2><p>Escolha como quer conversar com seus amigos.</p></div>
+<div class="grid"><div class="feature"><div class="big">🎧</div><h3>Chamada de voz</h3><p>Converse ao vivo com uma pessoa ou grupo.</p><button class="action" onclick="callDemo('voz')">Iniciar demonstração</button></div><div class="feature"><div class="big">📹</div><h3>Chamada de vídeo</h3><p>Veja seus amigos durante a conversa.</p><button class="action" onclick="callDemo('vídeo')">Iniciar demonstração</button></div></div>
+<div class="callbox" id="callbox" style="margin-top:14px"><div class="callavatar">💜</div><h3>Suas chamadas</h3><p>As chamadas reais precisam de conexão entre usuários e serviço de voz/vídeo.</p></div>
+</section>
+<section class="panel" id="filmes">
+<div class="welcome"><h2>🍿 Filmes juntos</h2><p>Crie uma sala de cinema virtual e convide a turma.</p></div>
+<div class="room"><div><span class="pill">SALA PRIVADA · DEMO</span><div class="movie-screen">▶️</div><h3 style="margin:0">Sessão Lily Kesed</h3><p style="font-size:13px;color:#e9d5ff">Convide seus amigos e escolha um vídeo autorizado.</p></div><div><button class="action" onclick="createRoom()">＋ Criar sala</button> <button class="action secondary" onclick="joinRoom()">Entrar com código</button></div></div>
+<div class="section-title"><h3>🎞️ Escolha um vídeo</h3></div><div class="feature"><p>Você pode testar com um arquivo de vídeo seu. Para filmes comerciais, use uma fonte licenciada; a sincronização exige um serviço compartilhado.</p><input type="file" accept="video/*" id="videoFile" onchange="loadVideo(event)" style="margin-top:12px;max-width:100%"><video id="localVideo" controls playsinline style="display:none;width:100%;margin-top:12px;border-radius:14px;background:#160b26"></video><div id="roomStatus" class="small" style="margin-top:10px"></div></div>
+</section>
+<section class="panel" id="midia">
+<div class="welcome"><h2>📸 Suas lembranças</h2><p>Escolha fotos do seu aparelho para pré-visualizar nesta demonstração.</p></div><button class="action" onclick="document.getElementById('galleryFiles').click()">＋ Escolher fotos</button><input type="file" id="galleryFiles" accept="image/*" multiple hidden onchange="gallery(event)"><div class="grid" id="gallery" style="margin-top:15px"></div>
+</section>
+</main><footer>💜 Lily Kesed · Demonstração de interface</footer>
+</div>
+<div class="modal" id="modal"><div class="modal-card"><h3 id="modalTitle">Nova conversa</h3><p id="modalText" class="small"></p><input id="modalInput" placeholder="Digite aqui"><div class="modal-actions"><button class="action secondary" onclick="closeModal()">Cancelar</button><button class="action" onclick="modalOk()">Continuar</button></div></div></div>
+<script>
+let currentChat='Lily 💗', modalMode='';
+function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>go(t.dataset.tab)));
+function sendMsg(text){const input=document.getElementById('message');const value=(text||input.value).trim();if(!value)return;const d=document.createElement('div');d.className='msg mine';d.textContent=value;const sm=document.createElement('small');sm.textContent='Você · agora';d.appendChild(sm);document.getElementById('messages').appendChild(d);document.getElementById('messages').scrollTop=99999;input.value='';}
+function addEmoji(){const emojis=['😊','❤️','😂','🥰','😍','🎉','✨','💜','😘','🍿','🌷','🤗'];const e=emojis[Math.floor(Math.random()*emojis.length)];document.getElementById('message').value+=e;document.getElementById('message').focus()}
+function addGif(){openModal('Enviar GIF','Demonstração: digite uma descrição do GIF que gostaria de enviar.','ex.: gatinho feliz','gif')}
+function sendPhoto(e){const f=e.target.files[0];if(!f)return;const url=URL.createObjectURL(f);const d=document.createElement('div');d.className='msg mine';const im=document.createElement('img');im.src=url;im.alt='Foto enviada';d.appendChild(im);const sm=document.createElement('small');sm.textContent='Você · foto local';d.appendChild(sm);document.getElementById('messages').appendChild(d);e.target.value=''}
+function gallery(e){const area=document.getElementById('gallery');for(const f of e.target.files){const card=document.createElement('div');card.className='feature';const im=document.createElement('img');im.src=URL.createObjectURL(f);im.alt='Foto da galeria';im.style.cssText='width:100%;height:150px;object-fit:cover;border-radius:14px';card.appendChild(im);area.appendChild(card)}}
+let recorder, chunks=[];
+async function recordAudio(){const status=document.getElementById('audioStatus');if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){status.textContent='Seu navegador não oferece gravação de áudio neste contexto.';return}try{if(recorder&&recorder.state==='recording'){recorder.stop();status.textContent='Finalizando gravação…';return}const stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);chunks=[];recorder.ondataavailable=e=>chunks.push(e.data);recorder.onstop=()=>{const blob=new Blob(chunks,{type:'audio/webm'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='audio-lily-kesed.webm';a.textContent='▶ Ouvir/baixar áudio gravado';a.style.color='#7c3aed';status.replaceChildren(a);stream.getTracks().forEach(t=>t.stop())};recorder.start();status.textContent='🔴 Gravando… toque no microfone novamente para parar.'}catch(err){status.textContent='Permita o acesso ao microfone para gravar áudio.'}}
+function selectChat(name){currentChat=name;document.getElementById('chatname').textContent=name;document.getElementById('messages').innerHTML='<div class="msg">Bem-vindo(a) à conversa '+name+'! 💜<small>Agora</small></div>';document.querySelectorAll('.chatitem').forEach(b=>b.style.outline='none');event?.currentTarget?.style?.setProperty('outline','2px solid #c4b5fd')}
+function openModal(title,desc,placeholder,mode){modalMode=mode;document.getElementById('modalTitle').textContent=title;document.getElementById('modalText').textContent=desc;document.getElementById('modalInput').placeholder=placeholder;document.getElementById('modalInput').value='';document.getElementById('modal').classList.add('show');document.getElementById('modalInput').focus()}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function modalOk(){const val=document.getElementById('modalInput').value.trim();if(modalMode==='gif'&&val)sendMsg('🎞️ GIF: '+val);if(modalMode==='chat'&&val){const b=document.createElement('button');b.className='chatitem';b.innerHTML='<div class="avatar">💬</div><div class="chattext"><strong></strong><span>Nova conversa</span></div>';b.querySelector('strong').textContent=val;b.onclick=()=>selectChat(val);document.getElementById('chatlist').appendChild(b)}if(modalMode==='room'&&val)document.getElementById('roomStatus').textContent='Sala criada nesta demonstração: '+val+' · Código fictício LK-'+Math.random().toString(36).slice(2,6).toUpperCase();if(modalMode==='join'&&val)document.getElementById('roomStatus').textContent='Código informado: '+val+'. A entrada em salas reais exige servidor.';closeModal()}
+function newChat(){openModal('Nova conversa','Crie uma conversa de demonstração.','Nome do amigo','chat')}
+function createRoom(){openModal('Criar sala de cinema','Dê um nome à sua sala.','Noite de cinema','room')}
+function joinRoom(){openModal('Entrar em uma sala','Digite o código recebido do anfitrião.','Código da sala','join')}
+function callDemo(type){document.getElementById('callbox').innerHTML='<div class="callavatar">'+(type==='voz'?'🎧':'📹')+'</div><h3>Chamada de '+type+'</h3><p>Prévia da interface — nenhuma chamada foi conectada.</p><div class="callbuttons"><button title="Microfone" onclick="this.textContent=this.textContent==='🎙️'?'🔇':'🎙️'">🎙️</button><button title="Câmera" onclick="this.textContent=this.textContent==='📷'?'🚫':'📷'">📷</button><button class="hang" title="Encerrar" onclick="document.getElementById(\\'callbox\\').innerHTML=\\'<div class=callavatar>💜</div><h3>Chamada encerrada</h3><p>Você pode iniciar outra demonstração.</p>\\'">☎️</button></div>'}
+function loadVideo(e){const f=e.target.files[0];if(!f)return;const v=document.getElementById('localVideo');v.src=URL.createObjectURL(f);v.style.display='block';document.getElementById('roomStatus').textContent='Vídeo local selecionado. Ele não foi compartilhado com outros usuários.'}
+</script>
+</body></html>
